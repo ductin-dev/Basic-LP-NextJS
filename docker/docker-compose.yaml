@@ -1,0 +1,21 @@
+services:
+  mrsatdev-troll:
+    container_name: MrSatDev-Troll
+    image: mrsatdev-troll:latest
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+    logging:
+      options:
+        max-size: 10m
+    ports:
+      - 5000:3000
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
+    restart: unless-stopped
+    networks:
+      - mrsatdev_labs_network
+
+networks:
+  mrsatdev_labs_network:
+    external: true
